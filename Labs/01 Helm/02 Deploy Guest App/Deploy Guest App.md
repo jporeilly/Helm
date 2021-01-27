@@ -17,7 +17,9 @@ check PODs & services:
 ```
 kubectl get pods,svc
 ```
+check in browser:
 
+> Guestbook: http://localhost/guestbook
 --- 
 
 
