@@ -8,13 +8,9 @@ spec:
     http:
       paths:
       - path: /
+        pathType: Prefix
         backend:
-          serviceName: frontend
-          servicePort: 80
-  - host: backend.minikube.local
-    http:
-      paths:
-      - path: /
-        backend:
-          serviceName: backend
-          servicePort: 80
+          service:
+            name: frontend
+            port:
+              number: 80
