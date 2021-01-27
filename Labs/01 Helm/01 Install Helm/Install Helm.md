@@ -1,4 +1,4 @@
-## <font color='red'> Helm </font>
+## <font color='red'> Helm 3</font>
 Helm is a tool for managing Charts. Charts are packages of pre-configured Kubernetes resources. 
 
 Helm 3.5 has already been installed and configured.
@@ -56,3 +56,46 @@ helm repo add stable https://charts.helm.sh/stable
 ```
 
 --- 
+
+### <font color='red'> 1.3 Quickstart </font>
+To show how easy it is to install an application - MySQL
+
+update Helm repo:
+```
+helm repo update              # Make sure we get the latest list of charts
+```
+to install MySQL:
+```
+helm install stable/mysql --generate-name
+```
+check MySQL:
+```
+kubectl get all | grep mysql
+```
+
+---
+
+### <font color='red'> 1.4 Cleanup </font>
+
+can also check the secrets:
+```
+kubectl get secret | grep mysql
+```
+helm uninstall:
+```
+helm uninstall mysql-xxxxxxxxxx
+```
+to see the POD terminating:
+```
+kubectl get all | grep mysql
+```
+can also check the secrets:
+```
+kubectl get secret | grep mysql
+```
+nothing...  
+  
+also caches some configuraion variables:
+```
+helm env
+```  
