@@ -1,7 +1,7 @@
 ### <font color='red'> 1.2.1 Deploy Guestbook App v1</font>
 In the first phase on the deployment is just the frontend.
 
-deploy the guestbook app:
+deploy the guestbook app v1:
 ```
 kubectl apply -f 01_frontend.yaml
 ```
@@ -22,3 +22,10 @@ kubectl get pods,svc
 
 
 ### <font color='red'> 1.2.1 Deploy Guestbook App v2</font>
+In the second phase a backend and databse was added. To successfully deploy the app the YAML files need to be 
+executed in order.  To help a shell script has been created..  Now dev want to rollback to v1..  :)
+
+deploy the guestbook app v2:
+```
+./deploy_app.sh
+```
