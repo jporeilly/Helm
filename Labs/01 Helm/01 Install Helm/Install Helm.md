@@ -5,7 +5,7 @@ Helm 3.5 has already been installed and configured.
 
 ---
 
-### <font color='red'> 1.1 Minikube </font>
+### <font color='red'> 1.1.1 Minikube </font>
 #### <font color='red'>IMPORTANT:</font> 
 <strong>Please ensure you start with a clean environment. 
 If you have previously run minikube, in another course, you will need to delete the existing instance.</strong>
@@ -43,7 +43,7 @@ minikube dashboard
 
 ---
 
-### <font color='red'> 1.2 Helm </font>
+### <font color='red'> 1.1.2 Helm </font>
 Helm server has been installed to /usr/local/bin/helm
 
 check helm:
@@ -57,7 +57,7 @@ helm repo add stable https://charts.helm.sh/stable
 
 --- 
 
-### <font color='red'> 1.3 Quickstart </font>
+### <font color='red'> 1.1.3 Quickstart </font>
 To show how easy it is to install an application - MySQL
 
 update Helm repo:
@@ -72,10 +72,14 @@ check MySQL:
 ```
 kubectl get all | grep mysql
 ```
+also can use:
+```
+helm ls
+```
 
 ---
 
-### <font color='red'> 1.4 Cleanup </font>
+### <font color='red'> 1.1.4 Cleanup </font>
 
 can also check the secrets:
 ```
@@ -99,3 +103,5 @@ also caches some configuraion variables:
 ```
 helm env
 ```  
+
+---
