@@ -1,4 +1,4 @@
-## <font color='red'> 2.1 Helm Charts </font>
+## <font color='red'> 2.1.1 Helm Charts </font>
 in this Lab you will build a Guestbook Helm Chart.  
 Ensure you're in the correct directory.
 
@@ -38,3 +38,16 @@ guestbook
       frontend-service.yaml
       frontend.yaml
       ingress.yaml
+
+
+## <font color='red'> 2.1.2 Deploy with Helm Chart </font>
+in this lab you will deploy the Guestbook v1 app.
+
+to deply Guestbook v1 app:
+```
+helm install demo-guestbook guestbook
+```
+check deployment:
+```
+kubectl get all
+```
