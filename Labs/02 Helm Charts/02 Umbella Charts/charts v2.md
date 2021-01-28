@@ -1,9 +1,7 @@
-## <font color='red'> 2.1Helm Charts </font>
-In these you're going to cover:
-* Building a Helm Chart
+## <font color='red'> 2.2 Umbrella Helm Charts </font>
+In these Labs you're going to cover:
+* Building an Umbrella Helm Chart
 * Deploying an App with a Helm Chart
-* Deploying a release
-* Rollbacks
 
 ### <font color='red'> 2.1.1 Helm Charts </font>
 in this Lab you will build a Guestbook Helm Chart.  
@@ -24,15 +22,15 @@ sudo nano Chart.yaml
 add the following:
 ```
 apiVersion: v2
-appVersion: "1.0"
-description: A Helm chart for Guestbook 1.0 
+appVersion: "2.0"
+description: A Helm chart for Guestbook 2.0 
 name: guestbook
-version: 0.1.0
+version: 1.1.0
 type: application
 ```
-create a templates directory:
+create a charts directory:
 ```
-sudo mkdir templates
+sudo mkdir charts
 ```
 copy over the yaml files:
 ```
@@ -42,10 +40,29 @@ so you should have the following structure:
 
 guestbook
    Chart.yaml
-   templates
-      frontend-service.yaml
-      frontend.yaml
-      ingress.yaml
+      charts
+         backend
+            Chart.yaml
+               templates
+                  backend-secret.yaml
+                  backend-service.yaml
+                  backend.yaml
+         database
+            Chart.yaml
+               templates
+                  mongodb-persistent-volume-claim.yaml
+                  mongodb-persistent-volume.yaml
+                  mongodb-secret.yaml
+                  mongodb-service.yaml
+                  mongodb-yaml
+         frontend
+            Chart.yaml
+               templates
+                  frontend-configMap.yaml
+                  frontend-service.yaml
+                  frontend.yaml
+                  ingress.yaml
+         
 
 
 ---
