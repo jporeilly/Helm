@@ -1,4 +1,4 @@
-## <font color='red'> 2.1Helm Charts </font>
+## <font color='red'> 2.1 Helm Charts </font>
 In these you're going to cover:
 * Building a Helm Chart
 * Deploying an App with a Helm Chart
