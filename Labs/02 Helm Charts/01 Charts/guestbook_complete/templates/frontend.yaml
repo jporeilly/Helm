@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
      # - image: nginx
-      - image: jporeilly/frontend:1.1
+      - image: jporeilly/frontend:1.0
         imagePullPolicy: Always
         name: frontend
         ports:
