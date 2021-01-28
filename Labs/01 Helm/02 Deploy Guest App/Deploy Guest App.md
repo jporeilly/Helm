@@ -29,5 +29,5 @@ executed in order.  To help a shell script has been created..  Now dev want to r
 
 deploy the guestbook app v2:
 ```
-./deploy_app.sh
+./deploy_guestbook_v2.sh
 ```
