@@ -13,12 +13,10 @@ spec:
         app: frontend
     spec:
       containers:
-     # - image: nginx RAJ temp test 4th commit
       - image: jporeilly/frontend:1.0
         imagePullPolicy: Always
         name: frontend
         ports:
         - name: frontend
           containerPort: 4200
-         # hostPort: 80
 

@@ -1,53 +1,24 @@
-## <font color='red'> 2.1 Creating & Accessing PODs </font>
+## <font color='red'> 2.1 Helm Charts </font>
+in this Lab you will build a Guestbook Helm Chart.  
+Ensure you're in the correct directory.
 
-check whats running:
+create a guestbook directory:
 ```
-kubectl get all
+mkdir guestbook
 ```
-install my-nginx:
+change to guestbook directory:
 ```
-kubectl run my-nginx --image=nginx:alpine
+cd guestbook
 ```
-check whats running:
+add a Chart.yaml file:
 ```
-kubectl get all
+nano Chart.yaml
 ```
-> Notice Deployment & Replicaset  
-
-delete [pod-name]:
+add the following:
 ```
-kubectl delete pod [pod-name]
+apiVersion: v1
+appVersion: "1.0"
+description: A Helm chart for Guestbook 1.0 
+name: guestbook
+version: 0.1.0
 ```
-check PODs:
-```
-kubectl get pods
-```
-> Notice new POD created
-
-for port-forward:
-```
-kubectl port-forward [pod-name] 8000:80
-```
-check PODs:
-```
-kubectl get pods
-```
-check whats running:
-```
-kubectl get all
-```
-to delete a POD:
-```
-kubectl delete deployment my-nginx
-```
-check whats running:
-```
-kubectl get all
-```
-> Notice POD is Terminating  
-
-set a Watch:
-```
-kubectl get pods --watch
-```
----

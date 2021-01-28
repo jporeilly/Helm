@@ -17,9 +17,10 @@ check PODs & services:
 ```
 kubectl get pods,svc
 ```
-check in browser:
+check guestbook in browser:
 
 > Guestbook: http://localhost/guestbook
+
 --- 
 
 
@@ -27,7 +28,18 @@ check in browser:
 In the second phase a backend and databse was added. To successfully deploy the app the YAML files need to be 
 executed in order.  To help a shell script has been created..  Now dev want to rollback to v1..  :)
 
-deploy the guestbook app v2:
+deploy guestbook app v2:
 ```
 ./deploy_guestbook_v2.sh
 ```
+check guestbook in browser:
+
+> Guestbook: http://localhost/guestbook
+
+delete guestbook app v2:
+```
+./delete_guestbook_v2.sh
+```
+
+
+--- 
