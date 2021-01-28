@@ -4,7 +4,7 @@ Ensure you're in the correct directory.
 
 create a guestbook directory:
 ```
-mkdir guestbook
+sudo mkdir guestbook
 ```
 change to guestbook directory:
 ```
@@ -12,7 +12,7 @@ cd guestbook
 ```
 add a Chart.yaml file:
 ```
-nano Chart.yaml
+sudo nano Chart.yaml
 ```
 add the following:
 ```
@@ -22,3 +22,19 @@ description: A Helm chart for Guestbook 1.0
 name: guestbook
 version: 0.1.0
 ```
+create a templates directory:
+```
+sudo mkdir templates
+```
+copy over the yaml files:
+```
+sudo cp ../yaml/*.yaml templates
+```
+so you should have the following structure:  
+
+guestbook
+   Chart.yaml
+   templates
+      frontend-service.yaml
+      frontend.yaml
+      ingress.yaml
