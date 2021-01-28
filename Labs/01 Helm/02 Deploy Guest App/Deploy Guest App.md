@@ -40,6 +40,14 @@ delete guestbook app v2:
 ```
 ./delete_guestbook_v2.sh
 ```
+check PODs & services:
+```
+kubectl get pods,svc
+```
 
+if you run into problems with permisions:
+```
+sudo chmod 777 ./deploy_guestbook_v2.sh
+```
 
 --- 
