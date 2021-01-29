@@ -79,7 +79,8 @@ helm get manifest demo-guestbook | less
 ---
 
 
-### <font color='red'> 2.1.3 Deploy an update with Helm Chart </font>
+### <font color='red'> 2.1.3 Upgrade
+ with Helm Chart </font>
 new release of the guestbook v1.1.
 ensure you're in hte correct directory.
 

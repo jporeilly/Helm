@@ -4,7 +4,7 @@ In these Labs you're going to cover:
 * Deploying an App with a Helm Chart
 
 ### <font color='red'> 2.1.1 Helm Charts </font>
-in this Lab you will build a Guestbook Helm Chart.  
+in this Lab you will build an Umbella Guestbook v2 Helm Chart.  
 Ensure you're in the correct directory.
 
 create a guestbook directory:
@@ -40,30 +40,29 @@ so you should have the following structure:
 
 guestbook
    Chart.yaml
-      charts
-         backend
-            Chart.yaml
-               templates
-                  backend-secret.yaml
-                  backend-service.yaml
-                  backend.yaml
-         database
-            Chart.yaml
-               templates
-                  mongodb-persistent-volume-claim.yaml
-                  mongodb-persistent-volume.yaml
-                  mongodb-secret.yaml
-                  mongodb-service.yaml
-                  mongodb-yaml
-         frontend
-            Chart.yaml
-               templates
-                  frontend-configMap.yaml
-                  frontend-service.yaml
-                  frontend.yaml
-                  ingress.yaml
+   charts
+      backend
+         Chart.yaml
+            templates
+               backend-secret.yaml
+               backend-service.yaml
+               backend.yaml
+      database
+         Chart.yaml
+            templates
+               mongodb-persistent-volume-claim.yaml
+               mongodb-persistent-volume.yaml
+               mongodb-secret.yaml
+               mongodb-service.yaml
+               mongodb-yaml
+      frontend
+         Chart.yaml
+            templates
+               frontend-configMap.yaml
+               frontend-service.yaml
+               frontend.yaml
+               ingress.yaml
          
-
 
 ---
 
@@ -96,7 +95,7 @@ helm get manifest demo-guestbook | less
 ---
 
 
-### <font color='red'> 2.1.3 Deploy an update with Helm Chart </font>
+### <font color='red'> 2.1.3 Upgrade with Helm Chart </font>
 new release of the guestbook v1.1.
 ensure you're in hte correct directory.
 
