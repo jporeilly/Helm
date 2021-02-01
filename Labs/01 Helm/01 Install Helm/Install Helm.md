@@ -105,3 +105,39 @@ helm env
 ```  
 
 ---
+
+
+
+### <font color='red'> Portainer </font>
+Portainer is an open-source toolset that allows you to easily build and manage Containers in Docker, Swarm, Kubernetes and Azure ACI.
+
+to add Portainer to the Helm repo:
+```
+helm repo add portainer https://portainer.github.io/k8s/
+```
+update the repo:
+```
+helm repo update
+```
+create the namespace:
+```
+kubectl create namespace portainer
+```
+for load balancer:
+```
+helm install -n portainer portainer portainer/portainer --set service.type=LoadBalancer
+```
+for ingress:
+```
+helm install -n portainer portainer portainer/portainer --set service.type=ClusterIP
+```
+> To access Portainer: http://0.0.0.0:9000/#!/auth  
+
+    * user: admin  
+    * password: portainer
+
+For further information:  
+
+> Portainer docs: https://documentation.portainer.io/
+
+---
