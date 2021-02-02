@@ -106,7 +106,7 @@ helm env
 
 ---
 
-
+This section contains some tools you may find useful.
 
 ### <font color='red'> Portainer </font>
 Portainer is an open-source toolset that allows you to easily build and manage Containers in Docker, Swarm, Kubernetes and Azure ACI.
@@ -139,5 +139,25 @@ helm install -n portainer portainer portainer/portainer --set service.type=Clust
 For further information:  
 
 > Portainer docs: https://documentation.portainer.io/
+
+---
+
+### <font color='red'> Weave Scope </font>
+Weave Scope automatically detects processes, containers, hosts.
+
+download Weave Scope:
+```
+sudo curl -L git.io/scope -o /usr/local/bin/scope
+```
+change permissions:
+```
+sudo chmod a+x /usr/local/bin/scope
+```
+launch scope:
+```
+scope launch
+```
+
+> view in browser: http://<vm-IP address>:4040 
 
 ---
