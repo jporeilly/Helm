@@ -63,7 +63,7 @@ check PODs & services:
 ```
 kubectl get pods,svc
 ```
-** Note: you may need to run the script a few times and tidy up using 'K8s' option..  
+** Note: you may need to run the script a few times and tidy up using 'K8s' menu option..  
 
 if you run into problems with permisions:
 ```
