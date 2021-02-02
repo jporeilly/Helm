@@ -51,6 +51,11 @@ deploy guestbook app v2:
 ```
 ./deploy_guestbook_v2.sh
 ```
+if you run into problems with permisions:
+```
+sudo chmod 777 ./deploy_guestbook_v2.sh
+```  
+
 check guestbook in browser:
 
 > Guestbook v2: http://frontend.minikube.local/guestbook
