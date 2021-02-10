@@ -94,7 +94,7 @@ change the following the following:
 appVersion: "1.1"
 description: A Helm chart for Guestbook 1.1 
 name: guestbook
-version: 0.1.1
+version: 0.1.0
 ```
 edit frontend.yaml to update release:
 ```
