@@ -1,9 +1,10 @@
 ## <font color='red'> 2.1 Helm Charts </font>
 In these you're going to cover:
-* Building a Helm Chart
-* Deploying an App with a Helm Chart
-* Deploying a release
-* Rollbacks
+* Build a Helm Chart
+* Release Guestbook v1
+* Upgrade to Guestbook v1.1
+* Rollback
+* Uninstall
 
 ### <font color='red'> 2.1.1 Helm Charts </font>
 in this Lab you will build a Guestbook Helm Chart.  
