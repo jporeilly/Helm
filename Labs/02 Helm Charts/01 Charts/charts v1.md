@@ -141,6 +141,8 @@ helm status guestbook-demo -n helm-demo
 
 > check in browser: http://frontend.minikube.local/guestbook
 
+if you problems resolving the URL you will need to update the /etc/hosts with frontend POD IP
+
 ---
 
 ### <font color='red'> 2.1.4 Rollback with Helm Chart </font>
