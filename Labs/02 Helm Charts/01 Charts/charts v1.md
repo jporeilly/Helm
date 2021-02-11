@@ -74,7 +74,7 @@ kubectl create namespace helm-demo
   
 to deploy Guestbook v1 app:
 ```
-helm install guestbook-demo ./guestbook/ --nnamespace helm-demo
+helm install guestbook-demo ./guestbook/ --namespace helm-demo
 ```
 check deployment:
 ```
