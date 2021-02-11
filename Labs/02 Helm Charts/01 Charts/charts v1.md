@@ -54,6 +54,16 @@ so you should have the following structure:
 ### <font color='red'> 2.1.2 Deploy with Helm Chart </font>
 in this lab you will deploy the Guestbook v1 app.
 
+obviously check that minikube is up and running:
+```
+minikube status
+```
+if not start minikube:
+```
+minikube start
+```  
+   
+  
 to deploy Guestbook v1 app:
 ```
 helm install demo-guestbook guestbook
