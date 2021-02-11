@@ -41,8 +41,8 @@ sudo cp ../yaml/*.yaml templates
 ```
 so you should have the following structure:  
 
->guestbook  
->>   Chart.yaml
+> guestbook  
+>>   Chart.yaml  
 >>   templates
 >>>    frontend-service.yaml  
 >>>    frontend.yaml  
