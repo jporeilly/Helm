@@ -66,7 +66,11 @@ start minikube:
 ```
 minikube start
 ```  
-
+then tunnel:
+```
+minikube tunnel
+``` 
+  
 create a namespace:
 ```
 kubectl create namespace helm-demo
@@ -122,6 +126,10 @@ to upgrade to Guestbook v1.1:
 ```
 helm upgrade guestbook-demo ./guestbook/ --namespace helm-demo
 ```
+check the frontend:1.1 image has been pulled:
+
+kubectl get service frontend
+
 check that the new image is used:
 ```
 kubectl describe pod -l app=frontend -n helm-demo
