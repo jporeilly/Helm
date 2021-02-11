@@ -74,7 +74,7 @@ kubectl create namespace helm-demo
   
 to deploy Guestbook v1 app:
 ```
-helm install guestbook-demo ./guestbook/ --namespace helm-demo
+helm install guestbook-demo ./guestbook/ --nnamespace helm-demo
 ```
 check deployment:
 ```
@@ -86,21 +86,20 @@ kubectl get pod -l app=frontend
 ```
 to get the names of installed releases:
 ```
-helm list --short
+helm list --short  -n helm-demo
 ```
 look at the manifest:
 ```
-helm get manifest guestbook-demo | less
+helm get manifest guestbook-demo -n helm-demo | less
 ```
 
 > check in browser: http://frontend.minikube.local/guestbook
 
 if you problems resolving the URL you may need to update the /etc/hosts with frontend POD IP
+
 ---
 
-
-### <font color='red'> 2.1.3 Upgrade
- with Helm Chart </font>
+### <font color='red'> 2.1.3 Upgrade with Helm Chart </font>
 new release of the guestbook v1.1.
 ensure you're in the correct directory.
 
@@ -121,15 +120,15 @@ edit frontend.yaml to update release:
 ```
 to upgrade to Guestbook v1.1:
 ```
-helm upgrade guestbook-demo ./guestbook/ guestbook
+helm upgrade guestbook-demo ./guestbook/ --namespace helm-demo
 ```
 check that the new image is used:
 ```
-kubectl describe pod -l app=frontend
+kubectl describe pod -l app=frontend -n helm-demo
 ```
 check the revision:
 ```
-helm status guestbook-demo
+helm status guestbook-demo -n helm-demo
 ```
 
 > check in browser: http://frontend.minikube.local/guestbook
@@ -141,18 +140,18 @@ rollback to Guestbook v1.
 
 to rollback:
 ```
-helm rollback guestbook-demo 1
+helm rollback guestbook-demo 1 -n helm-demo
 ```
 to view the history:
 ```
-helm history guestbook-demo
+helm history guestbook-demo -n helm-demo
 ```
 
 > check in browser: http://frontend.minikube.local/guestbook
 
 to delete all revisions:
 ```
-helm uninstall guestbook-demo
+helm uninstall guestbook-demo -n helm-demo
 ```
 
 ---
