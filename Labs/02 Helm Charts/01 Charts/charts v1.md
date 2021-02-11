@@ -78,11 +78,11 @@ helm install guestbook-demo ./guestbook/ --namespace helm-demo
 ```
 check deployment:
 ```
-kubectl get all
+kubectl get all -n helm-demo
 ```
 check frontend POD:
 ```
-kubectl get pod -l app=frontend
+kubectl get pod -l app=frontend -n helm-demo
 ```
 to get the names of installed releases:
 ```
