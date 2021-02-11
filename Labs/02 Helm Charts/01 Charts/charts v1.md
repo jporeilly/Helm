@@ -58,15 +58,23 @@ obviously check that minikube is up and running:
 ```
 minikube status
 ```
-if not start minikube:
+ensure you have a clean install:
+```
+minikube delete
+```  
+start minikube:
 ```
 minikube start
 ```  
-   
+
+create a namespace:
+```
+kubectl create namespace helm-demo
+```   
   
 to deploy Guestbook v1 app:
 ```
-helm install demo-guestbook guestbook
+helm install guestbook-demo ./guestbook/ --namespace helm-demo
 ```
 check deployment:
 ```
@@ -82,11 +90,12 @@ helm list --short
 ```
 look at the manifest:
 ```
-helm get manifest demo-guestbook | less
+helm get manifest guestbook-demo | less
 ```
 
-> check in browser: http://localhost/guestbook
+> check in browser: http://frontend.minikube.local/guestbook
 
+if you problems resolving the URL you may need to update the /etc/hosts with frontend POD IP
 ---
 
 
@@ -112,7 +121,7 @@ edit frontend.yaml to update release:
 ```
 to upgrade to Guestbook v1.1:
 ```
-helm upgrade demo-guestbook guestbook
+helm upgrade guestbook-demo ./guestbook/ guestbook
 ```
 check that the new image is used:
 ```
@@ -120,10 +129,10 @@ kubectl describe pod -l app=frontend
 ```
 check the revision:
 ```
-helm status demo-guestbook
+helm status guestbook-demo
 ```
 
-> check in browser: http://localhost/guestbook
+> check in browser: http://frontend.minikube.local/guestbook
 
 ---
 
@@ -132,18 +141,18 @@ rollback to Guestbook v1.
 
 to rollback:
 ```
-helm rollback demo-guestbook 1
+helm rollback guestbook-demo 1
 ```
 to view the history:
 ```
-helm history demo-guestbook
+helm history guestbook-demo
 ```
 
-> check in browser: http://localhost/guestbook
+> check in browser: http://frontend.minikube.local/guestbook
 
 to delete all revisions:
 ```
-helm uninstall demo-guestbook
+helm uninstall guestbook-demo
 ```
 
 ---
