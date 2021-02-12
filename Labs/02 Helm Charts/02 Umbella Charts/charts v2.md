@@ -83,7 +83,7 @@ tree guestbook
 >>>>>           ingress.yaml
 
 repeat the workflow with the following Chart.yaml:
-Chart.yaml for database:
+Chart.yaml for database:  
 ```
 apiVersion: v2
 appVersion: "3.6"
@@ -92,7 +92,7 @@ name: database
 version: 0.1.0
 type: application
 ```
-Chart.yaml for backend:
+Chart.yaml for backend:  
 ```
 apiVersion: v2
 appVersion: "2.0"
