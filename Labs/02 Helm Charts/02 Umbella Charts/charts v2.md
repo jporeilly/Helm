@@ -3,7 +3,7 @@ In these Labs you're going to cover:
 * Building an Umbrella Helm Chart
 * Deploy Guestbook v2 with a Helm Chart
 
-### <font color='red'> 2.1.1 Helm Charts </font>
+### <font color='red'> 2.2.1 Helm Charts </font>
 In this Lab you will build an umbrella Guestbook v2 Helm Chart.  
 Ensure you're in the correct directory if you're using the integrated terminal.
 
@@ -122,7 +122,7 @@ tree guestbook
 
 ---
 
-### <font color='red'> 2.1.2 Deploy with Helm Chart </font>
+### <font color='red'> 2.2.2 Deploy with Helm Chart </font>
 in this lab you will deploy the Guestbook v2 app.
 
 create a namespace:
