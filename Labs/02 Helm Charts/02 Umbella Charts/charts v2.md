@@ -86,11 +86,11 @@ tree guestbook
 <details>
   <summary>templates </summary>
 
->>  Chart.yaml  
->>>    frontend-configMap.yaml  
->>>    frontend-service.yaml  
->>>    frontend.yaml  
->>>    ingress.yaml  
+>>>  Chart.yaml  
+>>>>    frontend-configMap.yaml  
+>>>>    frontend-service.yaml  
+>>>>    frontend.yaml  
+>>>>    ingress.yaml  
    </details>
 </details>  
 <br/>
