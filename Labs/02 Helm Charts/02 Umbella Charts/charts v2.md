@@ -82,7 +82,8 @@ tree guestbook
 >>>>>           frontend.yaml
 >>>>>           ingress.yaml
 
-repeat the workflow with the following Chart.yaml:
+repeat the workflow with the following Chart.yaml:  
+
 Chart.yaml for database:  
 ```
 apiVersion: v2
