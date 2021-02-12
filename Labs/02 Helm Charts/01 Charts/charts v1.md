@@ -7,8 +7,8 @@ In these you're going to cover:
 * Uninstall
 
 ### <font color='red'> 2.1.1 Helm Charts </font>
-in this Lab you will build a Guestbook Helm Chart.  
-Ensure you're in the correct directory.
+In this Lab you will build a Guestbook v1 Helm Chart.  
+Ensure you're in the correct directory if you're using the integrated terminal.
 
 create a guestbook directory:
 ```
@@ -40,7 +40,9 @@ copy over the yaml files:
 sudo cp ../yaml/*.yaml templates
 ```
 so you should have the following structure:  
-
+```
+tree guestbook
+```
 > guestbook  
 >>   Chart.yaml  
 >>   templates
@@ -160,6 +162,11 @@ helm history guestbook-demo -n helm-demo
 > check in browser: http://frontend.minikube.local/guestbook
 
 to delete all revisions:
+```
+helm uninstall guestbook-demo -n helm-demo
+```
+
+delete helm-demo namespace:
 ```
 helm uninstall guestbook-demo -n helm-demo
 ```
