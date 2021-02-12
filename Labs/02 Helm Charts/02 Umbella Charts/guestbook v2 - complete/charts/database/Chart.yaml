@@ -3,3 +3,4 @@ appVersion: "3.6"
 description: A Helm chart for Guestbook Database Mongodb 3.6 
 name: database
 version: 0.1.0
+type: application
