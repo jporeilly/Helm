@@ -71,17 +71,29 @@ check the directory structure:
 ```
 tree guestbook
 ```
-> guestbook
->>   Chart.yaml
->>   templates
->>>      backend
->>>      Chart.yaml
->>>>         templates
->>>>>           frontend-configMap.yaml
->>>>>           frontend-service.yaml
->>>>>           frontend.yaml
->>>>>           ingress.yaml
+<details>
+  <summary>Click to expand Guestbook v2 tree!</summary>
+ 
+> guestbook   
+> Chart.yaml 
 
+<details>
+  <summary>charts</summary>
+
+>>  frontend  
+   </details>
+
+<details>
+  <summary>templates </summary>
+
+>>  Chart.yaml  
+>>>    frontend-configMap.yaml  
+>>>    frontend-service.yaml  
+>>>    frontend.yaml  
+>>>    ingress.yaml  
+   </details>
+</details>  
+<br/>
 repeat the workflow with the following Chart.yaml:  
 
 Chart.yaml for database:  
@@ -103,33 +115,10 @@ version: 1.1.0
 type: application
 ```
 
-so you should have the following structure:  
-
-> guestbook
->>   Chart.yaml
->>   templates
->>>      backend
->>>      Chart.yaml
->>>>         templates
->>>>>           backend-secret.yaml
->>>>>           backend-service.yaml
->>>>>           backend.yaml
->>>      database
->>>      Chart.yaml
->>>>         templates
->>>>>           mongodb-persistent-volume-claim.yaml
->>>>>           mongodb-persistent-volume.yaml
->>>>>           mongodb-secret.yaml
->>>>>           mongodb-service.yaml
->>>>>           mongodb-yaml
->>>      frontend
->>>      Chart.yaml
->>>>         templates
->>>>>           frontend-configMap.yaml
->>>>>           frontend-service.yaml
->>>>>           frontend.yaml
->>>>>           ingress.yaml
-         
+keep checking the structure:
+```
+tree guestbook
+```     
 
 ---
 

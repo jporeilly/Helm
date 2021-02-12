@@ -43,12 +43,23 @@ so you should have the following structure:
 ```
 tree guestbook
 ```
-> guestbook  
->>   Chart.yaml  
->>   templates
+
+<details>
+  <summary>Click to expand Guestbook v1 tree!</summary>
+ 
+> guestbook   
+> Chart.yaml  
+
+<details>
+  <summary>templates</summary>
+
+>>  Chart.yaml  
 >>>    frontend-service.yaml  
 >>>    frontend.yaml  
 >>>    ingress.yaml  
+   </details>
+</details>  
+<br/>
 
 
 ---
