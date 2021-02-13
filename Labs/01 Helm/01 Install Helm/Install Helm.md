@@ -20,6 +20,11 @@ to start minikube:
 minikube start
 ```
 
+minikube tunnel:
+```
+minikube tunnel
+```
+
 check minikube status:
 ```
 minikube status

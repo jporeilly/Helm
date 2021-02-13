@@ -1,13 +1,14 @@
 ## <font color='red'> 2.1 Helm Charts </font>
 In these you're going to cover:
-* Building a Helm Chart
-* Deploying an App with a Helm Chart
-* Deploying a release
-* Rollbacks
+* Build a Helm Chart
+* Release Guestbook v1
+* Upgrade to Guestbook v1.1
+* Rollback
+* Uninstall
 
 ### <font color='red'> 2.1.1 Helm Charts </font>
-in this Lab you will build a Guestbook Helm Chart.  
-Ensure you're in the correct directory.
+In this Lab you will build a Guestbook v1 Helm Chart.  
+Ensure you're in the correct directory if you're using the integrated terminal.
 
 create a guestbook directory:
 ```
@@ -39,13 +40,26 @@ copy over the yaml files:
 sudo cp ../yaml/*.yaml templates
 ```
 so you should have the following structure:  
+```
+tree guestbook
+```
 
-guestbook
-   Chart.yaml
-   templates
-      frontend-service.yaml
-      frontend.yaml
-      ingress.yaml
+<details>
+  <summary>Click to expand Guestbook v1 tree!</summary>
+ 
+> guestbook   
+> Chart.yaml  
+
+<details>
+  <summary>templates</summary>
+
+>>  Chart.yaml  
+>>>    frontend-service.yaml  
+>>>    frontend.yaml  
+>>>    ingress.yaml  
+   </details>
+</details>  
+<br/>
 
 
 ---
@@ -53,36 +67,58 @@ guestbook
 ### <font color='red'> 2.1.2 Deploy with Helm Chart </font>
 in this lab you will deploy the Guestbook v1 app.
 
+ensure you have a clean install:
+```
+minikube stop
+```
+delete the minikube cluster:
+```
+minikube delete
+```  
+start minikube:
+```
+minikube start
+```  
+then tunnel:
+```
+minikube tunnel
+``` 
+  
+create a namespace:
+```
+kubectl create namespace helm-demo
+```   
+  
 to deploy Guestbook v1 app:
 ```
-helm install demo-guestbook guestbook
+helm install guestbook-demo ./guestbook/ --namespace helm-demo
 ```
 check deployment:
 ```
-kubectl get all
+kubectl get all -n helm-demo
 ```
 check frontend POD:
 ```
-kubectl get pod -l app=frontend
+kubectl get pod -l app=frontend -n helm-demo
 ```
 to get the names of installed releases:
 ```
-helm list --short
+helm list --short  -n helm-demo
 ```
 look at the manifest:
 ```
-helm get manifest demo-guestbook | less
+helm get manifest guestbook-demo -n helm-demo | less
 ```
 
-> check in browser: http://localhost/guestbook
+> check in browser: http://frontend.minikube.local/guestbook
+
+if you problems resolving the URL you may need to update the /etc/hosts with frontend POD IP
 
 ---
 
-
-### <font color='red'> 2.1.3 Upgrade
- with Helm Chart </font>
+### <font color='red'> 2.1.3 Upgrade with Helm Chart </font>
 new release of the guestbook v1.1.
-ensure you're in hte correct directory.
+ensure you're in the correct directory.
 
 edit Chart.yaml file:
 ```
@@ -101,18 +137,24 @@ edit frontend.yaml to update release:
 ```
 to upgrade to Guestbook v1.1:
 ```
-helm upgrade demo-guestbook guestbook
+helm upgrade guestbook-demo ./guestbook/ --namespace helm-demo
 ```
+check the frontend:1.1 image has been pulled:
+
+kubectl get service frontend
+
 check that the new image is used:
 ```
-kubectl describe pod -l app=frontend
+kubectl describe pod -l app=frontend -n helm-demo
 ```
 check the revision:
 ```
-helm status demo-guestbook
+helm status guestbook-demo -n helm-demo
 ```
 
-> check in browser: http://localhost/guestbook
+> check in browser: http://frontend.minikube.local/guestbook
+
+if you problems resolving the URL you will need to update the /etc/hosts with frontend POD IP
 
 ---
 
@@ -121,18 +163,23 @@ rollback to Guestbook v1.
 
 to rollback:
 ```
-helm rollback demo-guestbook 1
+helm rollback guestbook-demo 1 -n helm-demo
 ```
 to view the history:
 ```
-helm history demo-guestbook
+helm history guestbook-demo -n helm-demo
 ```
 
-> check in browser: http://localhost/guestbook
+> check in browser: http://frontend.minikube.local/guestbook
 
 to delete all revisions:
 ```
-helm uninstall demo-guestbook
+helm uninstall guestbook-demo -n helm-demo
+```
+
+delete helm-demo namespace:
+```
+helm uninstall guestbook-demo -n helm-demo
 ```
 
 ---
