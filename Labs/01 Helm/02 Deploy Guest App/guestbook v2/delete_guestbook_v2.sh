@@ -5,8 +5,8 @@ kubectl delete -f 03_ingress.yaml
 kubectl delete -f 06_backend-secret.yaml
 kubectl delete -f 07_backend.yaml
 kubectl delete -f 08_backend-service.yaml
+kubectl delete -f 12_mongodb.yaml
 kubectl delete -f 09_mongodb-secret.yaml
 kubectl delete -f 10_mongodb-persistent-volume.yaml
 kubectl delete -f 11_mongodb-persistent-volume-claim.yaml
-kubectl delete -f 12_mongodb.yaml
 kubectl delete -f 13_mongodb-service.yaml
