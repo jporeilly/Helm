@@ -1,5 +1,5 @@
 ## <font color='red'> 2.1 Helm Charts </font>
-In these you're going to cover:
+In these Labs you're going to cover:
 * Build a Helm Chart
 * Release Guestbook v1
 * Upgrade to Guestbook v1.1
