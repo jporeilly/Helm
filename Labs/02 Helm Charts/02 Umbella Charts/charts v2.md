@@ -149,7 +149,7 @@ if you problems resolving the URL you may need to update the /etc/hosts with fro
 
 to delete all revisions:
 ```
-helm uninstall guestbook-demo
+helm uninstall guestbook-demo -n helm-demo
 ```
 
 ---
