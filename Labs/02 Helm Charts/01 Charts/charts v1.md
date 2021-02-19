@@ -179,7 +179,7 @@ helm uninstall guestbook-demo -n helm-demo
 
 delete helm-demo namespace:
 ```
-helm uninstall guestbook-demo -n helm-demo
+kubectl delete namespace helm-demo
 ```
 
 ---
