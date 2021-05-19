@@ -302,3 +302,25 @@ ingress:
   host: frontend.minikube.local
 ```
 ok. the frontend is now complete..!  I'll leave you to figure out the backend and database ..
+
+
+
+check the template:
+```
+helm template guestbook | less
+```
+Note have look at the manifest thats going to be deployed.
+another test is to do a dry-run:
+```
+helm install demo-guestbook guestbook --dry-run --debug
+```
+Note: the release name is now demo-guestbook.
+if everything is Ok:
+```
+helm install demo-guestbook gusetbook
+```
+check deployment:
+```
+kubectl get all
+```
+Note: there's an error with the backend..  any ideas?
