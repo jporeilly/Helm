@@ -45,7 +45,7 @@ start with frontend
 
 lets take a look at the directory structure:
 ```
-tree frontend
+tree
 ```
 * open the frontend-configmap.yaml.
 * notice values are hard-coded.
@@ -302,6 +302,7 @@ ingress:
 ```
 ok. the frontend is now complete..!  I'll leave you to figure out the backend and database ..
 
+ensure that your integrated terminal is pointing to the 01 Templates directory..
 check the template:
 ```
 helm template guestbook | less
@@ -314,10 +315,11 @@ helm install demo-guestbook guestbook --dry-run --debug
 Note: the release name is now demo-guestbook.
 if everything is Ok:
 ```
-helm install demo-guestbook gusetbook
+helm install demo-guestbook guestbook
 ```
 check deployment:
 ```
 kubectl get all
 ```
 Note: there's an error with the backend..  any ideas?
+Have a look at mongodb..
