@@ -303,8 +303,6 @@ ingress:
 ```
 ok. the frontend is now complete..!  I'll leave you to figure out the backend and database ..
 
-
-
 check the template:
 ```
 helm template guestbook | less
