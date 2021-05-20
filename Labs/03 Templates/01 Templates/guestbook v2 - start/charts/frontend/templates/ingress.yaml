@@ -4,23 +4,23 @@ metadata:
   name: guestbook-ingress
 spec:
   rules:
-  - host: frontend.minikube.local
+  - host: "frontend.minikube.local"
     http:
       paths:
-      - path: /
-        pathType: Prefix
+      - pathType: Prefix
+        path: "/"
         backend:
           service:
             name: frontend
             port:
               number: 80
-  - host: backend.minikube.local
+  - host: "backend.minikube.local"
     http:
       paths:
-      - path: /
-        pathType: Prefix
+      - pathType: Prefix
+        path: "/"
         backend:
           service:
             name: backend
             port:
-              number: 80
+              number: 80              
