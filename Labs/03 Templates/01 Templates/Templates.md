@@ -1,4 +1,4 @@
-## <font color='red'> 3.1 Helm Templates </font>
+## <font color='red'>3.1 Helm Templates</font>
 In these Labs you're going to cover:
 * Build a Helm Template
 * Release Guestbook v2
