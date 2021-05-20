@@ -1,4 +1,4 @@
-## <font color='red'> 3.1 Helm Templates </font>
+## <font color='red'>3.1 Helm Templates</font>
 In these Labs you're going to cover:
 * Build a Helm Chart
 * Release Guestbook v1
@@ -6,7 +6,7 @@ In these Labs you're going to cover:
 * Rollback
 * Uninstall
 
-### <font color='red'>Minikube</font>
+
 #### <font color='red'>IMPORTANT:</font> 
 <strong>Please ensure you start with a clean environment. 
 If you have previously run minikube, in another course, you will need to delete the existing instance.</strong>
