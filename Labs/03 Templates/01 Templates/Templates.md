@@ -323,3 +323,6 @@ kubectl get all
 ```
 Note: there's an error with the backend..  any ideas?
 Have a look at mongodb..
+```
+kubectl logs -f demo-guestbook-backend-xxxxxx-xxx
+```
