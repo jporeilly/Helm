@@ -25,17 +25,12 @@ minikube tunnel:
 minikube tunnel
 ```
 
-check minikube status:
-```
-minikube status
-```
-
 ---
 
 ### <font color='red'> Helm Template - Frontend</font>
 create a Helm Template to deploy Guestbook v2..
 start with frontend
-* frontend-confogmap.yaml
+* frontend-configmap.yaml
 * frontend-service.yaml
 * frontend.yaml
 * ingress.yaml

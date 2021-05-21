@@ -6,7 +6,7 @@ In these Labs you're going to cover:
 * Rollback
 * Uninstall
 
-### <font color='red'> 2.1.1 Helm Charts </font>
+### <font color='red'> Helm Charts </font>
 In this Lab you will build a Guestbook v1 Helm Chart.  
 Ensure you're in the correct directory if you're using the integrated terminal.
 
@@ -64,7 +64,7 @@ tree guestbook
 
 ---
 
-### <font color='red'> 2.1.2 Deploy with Helm Chart </font>
+### <font color='red'> Deploy with Helm Chart </font>
 in this lab you will deploy the Guestbook v1 app.
 
 ensure you have a clean install:
@@ -116,7 +116,7 @@ if you problems resolving the URL you may need to update the /etc/hosts with fro
 
 ---
 
-### <font color='red'> 2.1.3 Upgrade with Helm Chart </font>
+### <font color='red'> Upgrade with Helm Chart </font>
 new release of the guestbook v1.1.
 ensure you're in the correct directory.
 
@@ -158,7 +158,7 @@ if you problems resolving the URL you will need to update the /etc/hosts with fr
 
 ---
 
-### <font color='red'> 2.1.4 Rollback with Helm Chart </font>
+### <font color='red'> Rollback with Helm Chart </font>
 rollback to Guestbook v1.
 
 to rollback:

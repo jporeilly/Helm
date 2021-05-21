@@ -1,12 +1,11 @@
 ## <font color='red'> Helm 3</font>
 Helm is a tool for managing Charts. Charts are packages of pre-configured Kubernetes resources. 
 
-Helm 3.5 has already been installed and configured.
+**Helm 3.5.4 has already been installed and configured.**
 
 ---
 
-### <font color='red'> 1.1.1 Minikube </font>
-#### <font color='red'>IMPORTANT:</font> 
+### <font color='red'>IMPORTANT:</font> 
 <strong>Please ensure you start with a clean environment. 
 If you have previously run minikube, in another course, you will need to delete the existing instance.</strong>
 
@@ -30,11 +29,6 @@ check minikube status:
 minikube status
 ```
 
-view addons:
-```
-minikube addons list
-```
-
 For additional insight into your cluster state, minikube bundles the Kubernetes Dashboard:
 in a new terminal access dashboard:
 ```
@@ -48,7 +42,7 @@ minikube dashboard
 
 ---
 
-### <font color='red'> 1.1.2 Helm </font>
+### <font color='red'>Install Helm</font>
 Helm server has been installed to /usr/local/bin/helm
 
 check helm:
@@ -62,7 +56,7 @@ helm repo add stable https://charts.helm.sh/stable
 
 --- 
 
-### <font color='red'> 1.1.3 Quickstart </font>
+### <font color='red'>Quickstart</font>
 To show how easy it is to install an application - MySQL
 
 update Helm repo:
@@ -84,7 +78,7 @@ helm ls
 
 ---
 
-### <font color='red'> 1.1.4 Cleanup </font>
+### <font color='red'>Cleanup</font>
 
 can also check the secrets:
 ```
