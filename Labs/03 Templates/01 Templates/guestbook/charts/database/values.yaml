@@ -6,3 +6,4 @@ service:
   port: 80
 volume:
   storage: 100Mi
+ 

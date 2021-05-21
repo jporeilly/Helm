@@ -8,7 +8,7 @@ In these Labs you're going to cover:
 
 ---
 
-#### <font color='red'>Helm Template - _helper.tplFrontend</font>
+### <font color='red'>Helm Template - _helper.tplFrontend</font>
 our Helm template is nearly there, but there's still room for improvement..
 start with frontend
 * frontend-configmap.yaml
@@ -84,3 +84,61 @@ replace all the directives in all the frontend manifests:
 * backend-service.yaml
 * backend.yaml
 * ingress.yaml
+
+---
+
+### <font color='red'>Fix Database bug</font>
+Time to fix the database bug.. 
+the reason why it failed is because the backend services name depends on the {{ .Values.secrets.mongodb_uri }}-secret
+and its been hardcoded as: mongodb and also dynamically built hostname which is the {{ .Release.Name}}
+```
+data:
+  mongodb-uri: bW9uZ29kYjovL2FkbWluOnBhc3N3b3JkQG1vbmdvZGI6MjcwMTcvZ3Vlc3Rib29rP2F1dGhTb3VyY2U9YWRtaW4=
+#              "mongodb://admin:password@mongodb:27017/guestbook?authSource=admin"
+```
+So the URI needs to broken down..
+in the backend/templates/values.yaml we need to list the parts that make up the connection string:
+```
+secret:
+  mongodb_uri:
+    username: your_db_username
+    password: your_db_password
+    dbchart: database
+    dbport: 27017
+    dbconn: "guestbook?authSource=admin"
+...
+```
+then this list can be referenced in the backend-secret.yaml file:
+``
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ include "backend.fullname" . }}-secret 
+data:
+  mongodb-uri: {{ with .Values.secret.mongodb_uri -}}
+  {{- list "mongodb://" .username ":" .password "@" $.Release.Name "-" .dbchart ":" .port "/" .dbconn | join ""  | b64enc |  quote }}
+# {{- ( printf "%s%s:%s@%s-%s%s" "mongodb://" .username .password $.Release.Name "database" ":27017/guestbook?authSource=admin" ) | b64enc | quote }}
+{{- end }}
+```
+Note: all the strings are joined, then encoded in Base64 and finally entered in quotes.
+
+now the bug should be fixed ..  so lets test..
+
+
+ensure that your integrated terminal is pointing to the 02 Template Logic directory..
+check the template:
+```
+helm template guestbook | less
+```
+if everything is Ok:
+```
+helm upgrade demo-guestbook guestbook
+```
+check deployment:
+```
+kubectl get all
+```
+Note: everything should be OK..
+
+  > open in browser: http://frontend.minikube.local
+---
