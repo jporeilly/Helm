@@ -1,18 +1,25 @@
 ## <font color='red'>3.3 Helm Template - Dev & Test</font>
 So we're nearly there..  DevOps has asked if they could have Dev & Test versions deployed in the same namespace..
 In these Labs you're going to cover:
+* Edit HOSTS file
 * Dynamically create the hostnames
 * Add NOTES.txt
 
 ---
 
-### <font color='red'>Helm Template - _helper.tpl Frontend</font>
-our Helm template is nearly there, but there's still room for improvement..
-start with frontend
-* frontend-configmap.yaml
-* frontend-service.yaml
-* frontend.yaml
-* ingress.yaml
+### <font color='red'>Dynamically define hostnames</font>
+lets first ensure the HOSTS can resolve the URLs:
+```
+sudo nano /etc/hosts
+```
+add the following hostnames:
+```
+dev.frontend.minikube.local
+test.frontend.minikube.local
+dev.backend.minikube.local
+test.backend.minikube.local
+```
+
 
 lets take a look at the directory structure:
 ```
