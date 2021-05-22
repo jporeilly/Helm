@@ -1,8 +1,8 @@
-## <font color='red'>3.2 Helm Template logic</font>
+## <font color='red'>3.3 Helm Template - Dev & Test</font>
+So we're nearly there..  DevOps has asked if they could have Dev & Test versions deployed in the same namespace..
 In these Labs you're going to cover:
-* Replace directives
-* Add _helper.tpl
-* Fix the database bug
+* Dynamically create the hostnames
+* Add NOTES.txt
 
 ---
 
