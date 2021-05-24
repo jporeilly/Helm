@@ -1,19 +1,15 @@
 {{- if .Values.ingress.enabled }}
-apiVersion: networking.k8s.io/v1
+apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: {{ include "backend.fullname" . }}-ingress
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
   - host: {{ .Values.ingress.host }}
     http:
       paths:
       - path: /
-        pathType: Prefix
         backend:
-          service:
-            name: {{ include "backend.fullname" . }}
-            port:
-              number: 80
+          serviceName: {{ include "backend.fullname" . }} 
+          servicePort: 80
+{{- end }}
