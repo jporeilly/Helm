@@ -10,16 +10,18 @@ In these Labs you're going to cover:
 <strong>Please ensure you start with a clean environment. 
 If you have previously run minikube, in another course, you will need to delete the existing instance.</strong>
 
+to stop  minikube:
+```
+minikube stop
+```
 to delete  minikube:
 ```
 minikube delete
 ```
-
 to start minikube:
 ```
 minikube start
 ```
-
 minikube tunnel:
 ```
 minikube tunnel
@@ -63,7 +65,7 @@ config:
   guestbook-name: "MyPopRock Festival 2.0"
   backend-uri: "http://backend.minikube.local/guestbook"
 ```
-template doesnt support - so change:
+template doesnt support - (dashes) so change:
 ```
 config:
   guestbook_name: "MyPopRock Festival 2.0"
