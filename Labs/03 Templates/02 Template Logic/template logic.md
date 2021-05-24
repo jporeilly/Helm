@@ -163,6 +163,13 @@ kubectl get all
 ```
 Note: everything should be OK..
 
-  > open in browser: http://frontend.minikube.local
+check IP addresses in /etc/hosts:
+```
+[frontend-service IP] frontend.minikube.local
+[database-service IP] database.minikube.local
+[backend.minikube.local IP] backend.minikube.local
+```
+
+  > open in browser: http://frontend.minikube.local/
 
 ---

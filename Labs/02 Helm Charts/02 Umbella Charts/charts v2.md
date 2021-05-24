@@ -145,7 +145,10 @@ helm list -n helm-demo
 
 > check in browser: http://frontend.minikube.local/guestbook
 
-if you problems resolving the URL you may need to update the /etc/hosts with frontend POD IP
+if you problems resolving the URL you may need to update the /etc/hosts with:
+[frontend-service IP] frontend.minikube.local
+[database-service IP] database.minikube.local
+[backend.minikube.local IP] backend.minikube.local
 
 to delete all revisions:
 ```
