@@ -21,7 +21,7 @@ tree
 * open the frontend.yaml.
 * notice directives are repeated.
 
-**frontend**
+**frontend**  
 to make the name: frontend-config unique (in case there are several releases):
 ```
 apiVersion: apps/v1
@@ -62,7 +62,7 @@ replace all the directives in all the frontend manifests:
 * ingress.yaml
 
 
-**backend**
+**backend**  
 so repeat the process for the backend..
 let's move the code into a _helper.tpl file:
 ```
@@ -84,7 +84,7 @@ replace all the directives in all the frontend manifests:
 * backend.yaml
 * ingress.yaml
 
-**databse**
+**databse**  
 then finally, the database..
 
 let's move the code into a _helper.tpl file:
@@ -132,7 +132,7 @@ secret:
 ...
 ```
 then this list can be referenced in the backend-secret.yaml file:
-``
+```
 apiVersion: v1
 kind: Secret
 metadata:
