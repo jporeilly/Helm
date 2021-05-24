@@ -19,11 +19,11 @@ test.frontend.minikube.local
 dev.backend.minikube.local
 test.backend.minikube.local
 ```
-currently the frontend & backend URLs are hardcoded in the values.yaml..  
+currently the frontend & backend URLs are hardcoded in the values.yaml..   
+
 calls from the frontend trigger http requests to the backend, hence the separate ingress instances.
 
 thats fine but now they need to be dynamically generated.
-
 
 to switch on / off the ingress add the following directive to the frontend & backend ingress.yaml:
 ```
