@@ -19,157 +19,137 @@ test.frontend.minikube.local
 dev.backend.minikube.local
 test.backend.minikube.local
 ```
+currently the frontend & backend URLs are hardcoded in the values.yaml..   
 
+calls from the frontend trigger http requests to the backend, hence the separate ingress instances.
 
-lets take a look at the directory structure:
-```
-tree
-```
-* open the frontend.yaml.
-* notice directives are repeated.
+thats fine but now they need to be dynamically generated.
 
-**frontend**
-to make the name: frontend-config unique (in case there are several releases):
+to switch on / off the ingress add the following directive to the frontend & backend ingress.yaml:
 ```
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: {{ .Release.Name }}-{{ .Chart.Name }}
-```
-so if the value changed, you would have to edit in quite a few places..
-
-let's move the code into a _helper.tpl file:
-```
-touch guestbook v2 - start/charts/frontend/templates/_helper.tpl
-```
-add the following:
-```
-{{- define "frontend.fullname" -}}
-{{- if .Values.fullnameOverride -}}
-{{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" -}}
-{{- else -}}
-{{- printf "%s-%s" .Release.Name .Chart.Name | trunc 63 | trimSuffix "-" -}}
-{{- end -}}
-{{- end -}}
-```
-Note: so its now wrapped up in a define directive.
-replace all the directives in all the frontend manifests:
-```
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: {{ include "frontend.fullname" . }}
-...
-```
-Note: don't forget to set the scope with .
-replace all the directives in all the frontend manifests:
-* frontend-configmap.yaml
-* frontend-service.yaml
-* frontend.yaml
-* ingress.yaml
-
-
-**backend**
-so repeat the process for the backend..
-let's move the code into a _helper.tpl file:
-```
-touch guestbook v2 - start/charts/backend/templates/_helper.tpl
-```
-add the following:
-```
-{{- define "backend.fullname" -}}
-{{- if .Values.fullnameOverride -}}
-{{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" -}}
-{{- else -}}
-{{- printf "%s-%s" .Release.Name .Chart.Name | trunc 63 | trimSuffix "-" -}}
-{{- end -}}
-{{- end -}}
-```
-replace all the directives in all the frontend manifests:
-* backend-secret.yaml
-* backend-service.yaml
-* backend.yaml
-* ingress.yaml
-
-**databse**
-then finally, the database..
-
-let's move the code into a _helper.tpl file:
-```
-touch guestbook v2 - start/charts/database/templates/_helper.tpl
-```
-add the following:
-```
-{{- define "database.fullname" -}}
-{{- if .Values.fullnameOverride -}}
-{{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" -}}
-{{- else -}}
-{{- printf "%s-%s" .Release.Name .Chart.Name | trunc 63 | trimSuffix "-" -}}
-{{- end -}}
-{{- end -}}
-```
-replace all the directives in all the database manifests:
-* mongodb-persistent-volume-claim.yaml
-* mongodb-persistent-volume.yaml
-* mongodb-secret.yaml
-* mongodb-service.yaml
-* mongodb.yaml
-
----
-
-### <font color='red'>Fix Database bug</font>
-Time to fix the database bug.. 
-the reason why it failed is because the backend services name depends on the {{ .Values.secrets.mongodb_uri }}-secret
-and its been hardcoded as: mongodb and also dynamically built hostname which is the {{ .Release.Name}}
-```
-data:
-  mongodb-uri: bW9uZ29kYjovL2FkbWluOnBhc3N3b3JkQG1vbmdvZGI6MjcwMTcvZ3Vlc3Rib29rP2F1dGhTb3VyY2U9YWRtaW4=
-#              "mongodb://admin:password@mongodb:27017/guestbook?authSource=admin"
-```
-So the URI needs to broken down..
-in the backend/templates/values.yaml we need to list the parts that make up the connection string:
-```
-secret:
-  mongodb_uri:
-    username: your_db_username
-    password: your_db_password
-    dbchart: database
-    dbport: 27017
-    dbconn: "guestbook?authSource=admin"
-...
-```
-then this list can be referenced in the backend-secret.yaml file:
-``
-apiVersion: v1
-kind: Secret
-metadata:
-  name: {{ include "backend.fullname" . }}-secret 
-data:
-  mongodb-uri: {{ with .Values.secret.mongodb_uri -}}
-  {{- list "mongodb://" .username ":" .password "@" $.Release.Name "-" .dbchart ":" .port "/" .dbconn | join ""  | b64enc |  quote }}
-# {{- ( printf "%s%s:%s@%s-%s%s" "mongodb://" .username .password $.Release.Name "database" ":27017/guestbook?authSource=admin" ) | b64enc | quote }}
+{{- if .Values.ingress.enabled }}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+....
 {{- end }}
 ```
-Note: all the strings are joined, then encoded in Base64 and finally entered in quotes.
+next in the backend/values.yaml set the ingress enabled to true:
+```
+ingress:
+  enabled: true
+  host: backend.minikube.local
+```
+Note: ensures you get an ingress by default if the chart is a standalone.
+repeat for the frontend.
+however, the ingress needs to be disabled at the top level chart.
 
-now the bug should be fixed ..  so lets test..
+create a values.yaml:
+```
+touch values.yaml
+```
+add the following:
+```
+backend:
+  secret:
+    mongodb_uri:
+      username: admin
+      password: password
+  ingress:
+    enabled: false
+frontend:
+  ingress:
+    enabled: false
+
+ingress:
+  hosts:
+    - host:
+        domain: frontend.minikube.local
+        chart: frontend
+    - host:
+        domain: backend.minikube.local
+        chart: backend
+```
+Note: so we've disabled the separate frontend and backend ingress, but added the hosts for the top level ingress.
+
+create a top level templates directory for the ingress.yaml:
+```
+sudo mkdir guestbook/templates
+```
+create ingress.yaml
+```
+touch ingress.yaml
+```
+add the following:
+```
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}-{{ .Chart.Name }}-ingress
+spec:
+  rules:
+{{- range .Values.ingress.hosts }}
+  - host: {{ $.Release.Name }}.{{ .host.domain }}
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ $.Release.Name}}-{{ .host.chart }}
+            port:
+              number: 80
+{{- end }}
+```
+Note: this will serve both the frontend and backend as the {{ - range .Values.ingress.hosts}} will loop through the hosts.
+Also we can now set the {{ $.Release.Name }}.{{ .host.domain}} variable with dev or test and the hostname will be dynamically generated.
+
+last but least..  lets add a NOTES.txt:
+```
+Congratulations ! You installed {{ .Chart.Name }} chart sucessfully.
+Release name is {{ .Release.Name }}
+
+You can access the Guestbook application at the following urls :
+{{- range .Values.ingress.hosts }}
+  http://{{ $.Release.Name }}.{{ .host.domain }}
+{{- end }}
+Have fun !
+```
+
+finally also increment the Chart(.yaml) version to: 1.2.2
 
 
-ensure that your integrated terminal is pointing to the 02 Template Logic directory..
-check the template:
+were now ready for release..!
+
+test the manifests:
 ```
 helm template guestbook | less
 ```
-if everything is Ok:
+Note: check the ingress is dynamically generating the hosts.
+check whats installed:
 ```
-helm upgrade demo-guestbook guestbook
+helm list --short
 ```
-check deployment:
+uninstall demo-guestbook:
 ```
-kubectl get all
+helm uninstall demo-guestbook
 ```
-Note: everything should be OK..
+install a dev release:
+```
+helm install dev guestbook  --set frontend.config.guestbook_name=DEV
+```
+now install test release:
+```
+helm install test guestbook  --set frontend.config.guestbook_name=TEST
+```
+check the Pods:
+```
+kubectl get po
+```
 
-  > open in browser: http://frontend.minikube.local
+  > dev guestbook: http://dev.frontend.minikube.local/  
+
+
+  > test guestbook: http://test.frontend.minikube.local/ 
+
 
 ---
