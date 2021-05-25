@@ -110,8 +110,8 @@ replace all the directives in all the database manifests:
 
 ---
 
-### <font color='red'>Fix Database bug</font>
-Time to fix the database bug.. 
+### <font color='red'>Fix Database</font>
+Time to fix the database.. 
 the reason why it failed is because the backend services name depends on the {{ .Values.secrets.mongodb_uri }}-secret
 and its been hardcoded as: mongodb and also dynamically built hostname which is the {{ .Release.Name}}
 ```
