@@ -6,7 +6,7 @@ secret:
     dbport: 27017
     dbconn: "guestbook?authSource=admin"
 image:
-  repository: phico/backend
+  repository: jporeilly/backend
   tag: "2.0"
 replicaCount: 1
 service:
