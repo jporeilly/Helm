@@ -141,9 +141,9 @@ now install test release:
 ```
 helm install test guestbook  --set frontend.config.guestbook_name=TEST
 ```
-check the Pods:
+verify the deployment:
 ```
-kubectl get po
+kubectl get all
 ```
 
   > dev guestbook: http://dev.frontend.minikube.local/  
